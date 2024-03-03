@@ -17,4 +17,10 @@
     //SignInInfo
     <string name="SignInInfo">Already have an account?</string>
 
+    <string name="SignCheckBox">By ticking this box, you agree to our Terms and conditions and private policy </string>
+
+    <string name="ForgetEmail">Enter your email address</string>
+    <string name="ForgetPassword">Enter your password</string>
+    <string name="ForgetRetryPassword">Сonfirm your password</string>
+    <string name="DontMatch">Passwords don&quot;t match</string>
 </resources>

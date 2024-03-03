@@ -4,8 +4,11 @@ package com.example.rediexpressapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
@@ -22,12 +25,32 @@ public class MainActivity extends AppCompatActivity {
 
     TextView[] dots;
     ViewPagerAdapter viewPagerAdapter;
+    Boolean flag;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
+        if(pref.getBoolean("activity_executed", false)) {
+            Intent intent = new Intent(this, MainActivitySignUp.class);
+            startActivity(intent);
+            finish();
+        }
+        else
+        {
+
+            SharedPreferences.Editor ed = pref.edit();
+            ed.putBoolean("activity_executed", true);
+            ed.commit();
+
+        }
+
 
         nextbtn = findViewById(R.id.ButtonNext);
         skipbtn = findViewById(R.id.ButtonSkip);
@@ -68,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent i = new Intent(MainActivity.this, MainActivitySignUp.class);
+
+                Intent i = new Intent(MainActivity.this, MainActivitySignIn.class);
                 startActivity(i);
                 finish();
 
@@ -151,5 +175,26 @@ public class MainActivity extends AppCompatActivity {
     private int getitem(int i){
 
         return mSLideViewPager.getCurrentItem() + i;
+    }
+
+
+    // Вызывается перед выходом из "активного" состояния
+    @Override
+    public void onPause(){
+        // "Замораживает" пользовательский интерфейс, потоки
+        // или трудоемкие процессы, которые могут не обновляться,
+        // пока Активность не находится на переднем плане.
+        super.onPause();
+    }
+
+    // Вызывается перед тем, как Активность перестает быть "видимой".
+    @Override
+    public void onStop(){
+        // "Замораживает" пользовательский интерфейс, потоки
+        // или операции, которые могут подождать, пока Активность
+        // не отображается на экране. Сохраняйте все введенные
+        // данные и изменения в UI так, как будто после вызова
+        // этого метода процесс должен быть закрыт.
+        super.onStop();
     }
 }
