@@ -108,15 +108,6 @@ public class MainActivityOTPVerif extends AppCompatActivity {
 
                         if (response.code() == 200) {
 
-                            try {
-                                JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
-                                access_token  = jsonObject.getString("access_token");
-                            } catch (JSONException e)
-                            {
-                                e.printStackTrace();
-                            }
-
-                            Toast.makeText(MainActivityOTPVerif.this, access_token.toString().trim(), Toast.LENGTH_SHORT).show();
 
                             Intent i = new Intent(MainActivityOTPVerif.this, MainActivityNewPassword.class);
                             i.putExtra("EmailOTP", getIntent().getStringExtra("EmailEditText"));

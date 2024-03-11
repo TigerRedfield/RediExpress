@@ -17,6 +17,7 @@
         android:text="Next"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:cornerRadius="5px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -38,14 +39,15 @@
         android:id="@+id/ButtonSignIn"
         android:layout_width="86dp"
         android:layout_height="40dp"
+        android:layout_marginStart="52dp"
         android:layout_marginBottom="29dp"
         android:backgroundTint="@color/background"
         android:text="Sign In"
-        android:layout_marginStart="52dp"
         android:textColor="@color/buttontext"
         android:textSize="12sp"
 
         android:visibility="invisible"
+        app:cornerRadius="5px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.71"
