@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
-        if(pref.getBoolean("activity_executed", false)) {
+        if(pref.getBoolean("MainActivity", false)) {
             Intent intent = new Intent(this, MainActivitySignUp.class);
             startActivity(intent);
             finish();
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         {
 
             SharedPreferences.Editor ed = pref.edit();
-            ed.putBoolean("activity_executed", true);
+            ed.putBoolean("MainActivity", true);
             ed.commit();
 
         }

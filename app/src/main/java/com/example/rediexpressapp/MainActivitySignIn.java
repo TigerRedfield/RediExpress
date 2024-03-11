@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rediexpressapp.ApiBuilders.ApiBuilder;
+import com.example.rediexpressapp.Model.Auth.AddProfiles;
 import com.example.rediexpressapp.Model.Auth.AuthorizationReq;
 
 import java.util.Currency;
@@ -30,6 +31,8 @@ public class MainActivitySignIn extends AppCompatActivity {
 
     Button ButtonSignUp;
     Button ButtonLogIn;
+
+    Button ForgetPass;
 
     EditText etxtEmail;
     EditText etxtPassword;
@@ -50,6 +53,8 @@ public class MainActivitySignIn extends AppCompatActivity {
         etxtPassword = findViewById(R.id.txtPassword);
         cbRemember = findViewById(R.id.cbRememberMe);
 
+        ForgetPass = findViewById(R.id.ForgotBut);
+
         HelperLogin helperLogin = new HelperLogin(this);
 
 
@@ -60,6 +65,15 @@ public class MainActivitySignIn extends AppCompatActivity {
         etxtPassword.addTextChangedListener(LogIntxtWatch);
 
 
+        ForgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivitySignIn.this, MainActivityForgotPassword.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
 
         ButtonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +83,6 @@ public class MainActivitySignIn extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
         sp=getSharedPreferences("Data" , MODE_PRIVATE);
         editor=sp.edit();
@@ -87,6 +99,10 @@ public class MainActivitySignIn extends AppCompatActivity {
 
                 AuthorizationReq authorizationReq = new AuthorizationReq(etxtEmail.getText().toString().trim(), etxtPassword.getText().toString().trim());
 
+                AddProfiles addProfiles = new AddProfiles(getIntent().getStringExtra("etxtName"),
+                        getIntent().getStringExtra("etxtPhone"), etxtEmail.getText().toString().trim(), "default");
+
+
                ApiBuilder.getREPApi().postAuthoInfo("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRod3p4a2FqY3Fscmt2dG9xaXVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg5MzQ0OTEsImV4cCI6MjAyNDUxMDQ5MX0.8k6uBTbNsW-GBmFvacD_8_P1m4Z1F4Q7RKZzteMrz-w",
                        authorizationReq).enqueue(new Callback<AuthorizationReq>() {
                    @Override
@@ -94,39 +110,33 @@ public class MainActivitySignIn extends AppCompatActivity {
 
                        if(response.code() == 200)
                        {
-                           boolean checklogin = helperLogin.checkusernameandpassword(etxtEmail.getText().toString(), etxtPassword.getText().toString());
-                           {
-                               if(checklogin == true)
-                               {
-                                   if(cbRemember.isChecked())
-                                   {
-                                       editor.putString("Email", etxtEmail.getText().toString());
-                                       editor.putString("Password", etxtPassword.getText().toString());
-                                       editor.putBoolean("ISLOGGEDIN" , true);
-                                       editor.apply();
 
-                                       Toast.makeText(MainActivitySignIn.this, "Login is successful", Toast.LENGTH_SHORT).show();
-                                       Intent i = new Intent(MainActivitySignIn.this, MainActivityHome.class);
-                                       startActivity(i);
-                                       finish();
-                                   }
-                                   else if (!cbRemember.isChecked()) {
-                                       editor.putString("Email", "");
-                                       editor.putString("Password", "");
-                                       editor.putBoolean("ISLOGGEDIN" , false);
-                                       editor.apply();
-                                       Toast.makeText(MainActivitySignIn.this, "Login is successful", Toast.LENGTH_SHORT).show();
-                                       Intent i = new Intent(MainActivitySignIn.this, MainActivityHome.class);
-                                       startActivity(i);
-                                       finish();
-                                   }
-                               }
-                               else
-                               {
-                                   Toast.makeText(MainActivitySignIn.this, "Invalid Details", Toast.LENGTH_SHORT).show();
-                               }
+                           if(cbRemember.isChecked())
+                           {
+                               editor.putString("Email", etxtEmail.getText().toString());
+                               editor.putString("Password", etxtPassword.getText().toString());
+                               editor.putBoolean("ISLOGGEDIN" , true);
+                               editor.apply();
+
+                               Toast.makeText(MainActivitySignIn.this, "Login is successful", Toast.LENGTH_SHORT).show();
+                               Intent i = new Intent(MainActivitySignIn.this, MainActivityHome.class);
+                               startActivity(i);
+                               finish();
                            }
+                           else if (!cbRemember.isChecked()) {
+                               editor.putString("Email", "");
+                               editor.putString("Password", "");
+                               editor.putBoolean("ISLOGGEDIN" , false);
+                               editor.apply();
+                               Toast.makeText(MainActivitySignIn.this, "Login is successful", Toast.LENGTH_SHORT).show();
+                               Intent i = new Intent(MainActivitySignIn.this, MainActivityHome.class);
+                               startActivity(i);
+                               finish();
+                           }
+
+
                        }
+
                        else if(response.code() == 400)
                        {
                             Toast.makeText(MainActivitySignIn.this, "Invalid email or password. Or the mail has not been confirmed.", Toast.LENGTH_SHORT).show();

@@ -55,7 +55,7 @@
         android:layout_width="325dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:hint="Email Address"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonForgotPassword"
+        android:id="@+id/ForgotBut"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="52dp"
@@ -123,6 +123,8 @@
         app:layout_constraintHorizontal_bias="0.853"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="325dp"
