@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/fragmentMain">
+    <fragment
+        android:id="@+id/fragmentMain"
+        android:name="com.example.rediexpressapp.FragmentMain"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentNotification"
+            app:destination="@id/fragmentNotification" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentAddPayMethod"
+            app:destination="@id/fragmentAddPayMethod" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentChats"
+            app:destination="@id/fragmentChats" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentSendPackage2"
+            app:destination="@id/fragmentSendPackage" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentPackageInfo2"
+            app:destination="@id/fragmentPackageInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNotification"
+        android:name="com.example.rediexpressapp.FragmentNotification"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/fragmentAddPayMethod"
+        android:name="com.example.rediexpressapp.FragmentAddPayMethod"
+        android:label="fragment_add_pay_method"
+        tools:layout="@layout/fragment_add_pay_method" />
+    <fragment
+        android:id="@+id/fragmentChats"
+        android:name="com.example.rediexpressapp.FragmentChats"
+        android:label="fragment_chats"
+        tools:layout="@layout/fragment_chats" >
+        <action
+            android:id="@+id/action_fragmentChats_to_fragmentChat"
+            app:destination="@id/fragmentChat" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPackageInfo"
+        android:name="com.example.rediexpressapp.FragmentPackageInfo"
+        android:label="fragment_package_info"
+        tools:layout="@layout/fragment_package_info" >
+        <action
+            android:id="@+id/action_fragmentPackageInfo_to_fragmentDeliverySuccess"
+            app:destination="@id/fragmentDeliverySuccess" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSendPackage"
+        android:name="com.example.rediexpressapp.FragmentSendPackage"
+        android:label="fragment_send_package"
+        tools:layout="@layout/fragment_send_package" >
+        <action
+            android:id="@+id/action_fragmentSendPackage_to_fragmentTransaction"
+            app:destination="@id/fragmentTransaction" />
+        <action
+            android:id="@+id/action_fragmentSendPackage_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDeliverySuccess"
+        android:name="com.example.rediexpressapp.FragmentDeliverySuccess"
+        android:label="fragment_delivery_success"
+        tools:layout="@layout/fragment_delivery_success" >
+        <action
+            android:id="@+id/action_fragmentDeliverySuccess_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTransaction"
+        android:name="com.example.rediexpressapp.FragmentTransaction"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" >
+        <action
+            android:id="@+id/action_fragmentTransaction_to_fragmentMain"
+            app:destination="@id/fragmentMain" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentChat"
+        android:name="com.example.rediexpressapp.FragmentChat"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_fragmentChat_to_fragmentCalling"
+            app:destination="@id/fragmentCalling" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCalling"
+        android:name="com.example.rediexpressapp.FragmentCalling"
+        android:label="fragment_calling"
+        tools:layout="@layout/fragment_calling" />
+</navigation>
